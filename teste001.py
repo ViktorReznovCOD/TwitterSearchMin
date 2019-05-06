@@ -1,4 +1,8 @@
+import pandas as pd
+import numpy as np
+import matplotlib as plt
 from TwitterSearch import *
+
 try:
 
     ts = TwitterSearch(
@@ -11,10 +15,14 @@ try:
     tso = TwitterSearchOrder()
     tso.set_keywords(['ver o peso'])
     tso.set_language('pt')
-    tso.set_geocode(1.4557,48.4902,10,imperial_metric=True)
 
     for tweet in ts.search_tweets_iterable(tso):
-        print( '@%s tweeted: %s' % ( tweet['user']['screen_name'], tweet['text'] ) )
+        print('\n' '@%s tweeted: %s' % ( tweet['user']['screen_name'], tweet['text'] ) )
+        print(type(tweet))
+
+        a1 = pd.Series(tweet)
+        print(a1)
 
 except TwitterSearchException as e:
     print(e)
+    
